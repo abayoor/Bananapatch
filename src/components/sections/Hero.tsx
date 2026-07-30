@@ -10,15 +10,10 @@ import {
 } from 'framer-motion';
 import Button from '../ui/Button';
 import Media from '../ui/Media';
-
-const titleLines = [
-  { text: 'Технология, которая' },
-  { text: 'останавливает', accent: true },
-  { text: 'кровотечение' },
-  { text: 'за секунды.' },
-];
+import { useI18n } from '../../i18n/I18nProvider';
 
 export default function Hero() {
+  const { content } = useI18n();
   const root = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
@@ -53,11 +48,11 @@ export default function Hero() {
       <div className="hero__content">
         <motion.div className="hero__copy" style={{ y: reduceMotion ? 0 : copyY, opacity: reduceMotion ? 1 : copyOpacity }}>
           <motion.p className="hero__badge" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-            Патент подан · Kazpatent №490282
+            {content.hero.badge}
           </motion.p>
-          <h1 aria-label="Технология, которая останавливает кровотечение за секунды.">
-            {titleLines.map(({ text, accent }, index) => (
-              <span className="hero__title-line" key={text} aria-hidden="true">
+          <h1 aria-label={content.hero.titleAria}>
+            {content.hero.titleLines.map(({ text, accent }, index) => (
+              <span className="hero__title-line" key={`${text}-${index}`} aria-hidden="true">
                 <motion.span
                   className={accent ? 'hero__title-accent' : undefined}
                   initial={reduceMotion ? false : { y: '110%', rotate: 1.5 }}
@@ -70,11 +65,11 @@ export default function Hero() {
             ))}
           </h1>
           <motion.p className="hero__lead" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.58, duration: 0.65 }}>
-            BananaPatch — гемостатический порошок из банановой кожуры. В 50 раз дешевле импортных аналогов и производится из доступного органического сырья.
+            {content.hero.lead}
           </motion.p>
           <motion.div className="hero__actions" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.72, duration: 0.6 }}>
-            <Button href="#solution">Узнать больше <ArrowDown size={17} aria-hidden="true" /></Button>
-            <Button href="#contacts" variant="secondary">Связаться с нами <ArrowUpRight size={17} aria-hidden="true" /></Button>
+            <Button href="#solution">{content.hero.learnMore} <ArrowDown size={17} aria-hidden="true" /></Button>
+            <Button href="#contacts" variant="secondary">{content.hero.contact} <ArrowUpRight size={17} aria-hidden="true" /></Button>
           </motion.div>
         </motion.div>
 
@@ -94,20 +89,20 @@ export default function Hero() {
               animate={{ clipPath: 'inset(0% 0 0 round 28px)' }}
               transition={{ duration: 1.15, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Media src="/images/hero-product-minimal.png" alt="Минималистичная упаковка BananaPatch" className="hero__packshot-image" eager label="Готовый продукт BananaPatch" />
-              <span className="hero__packshot-label">01 / готовый продукт</span>
+              <Media src="/images/hero-product-minimal.png" alt={content.hero.imageAlt} className="hero__packshot-image" eager label={content.hero.imageLabel} />
+              <span className="hero__packshot-label">{content.hero.productLabel}</span>
               <span className="hero__scanline" aria-hidden="true" />
             </motion.div>
           </motion.div>
           <motion.div className="hero__metric hero__metric--plant" animate={reduceMotion ? undefined : { y: [0, -8, 0] }} transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}>
-            <strong>70%</strong><span>растительная основа</span>
+            <strong>70%</strong><span>{content.hero.plantMetric}</span>
           </motion.div>
           <motion.div className="hero__metric hero__metric--cost" animate={reduceMotion ? undefined : { y: [0, 7, 0] }} transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}>
-            <strong>50×</strong><span>доступнее аналогов</span>
+            <strong>50×</strong><span>{content.hero.costMetric}</span>
           </motion.div>
         </motion.div>
       </div>
-      <a className="scroll-cue" href="#problem"><span>Листайте, чтобы узнать больше</span><i><ArrowDown size={16} aria-hidden="true" /></i></a>
+      <a className="scroll-cue" href="#problem"><span>{content.hero.scrollCue}</span><i><ArrowDown size={16} aria-hidden="true" /></i></a>
     </section>
   );
 }

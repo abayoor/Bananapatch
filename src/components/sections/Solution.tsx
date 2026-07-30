@@ -2,24 +2,24 @@ import { Droplets, Leaf, Globe2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Media from '../ui/Media';
+import { useI18n } from '../../i18n/I18nProvider';
 
-const benefits = [
-  [Droplets, 'Останавливает кровотечение', 'Абсорбирует кровь и помогает запустить свёртывание за секунды.'],
-  [Leaf, 'Растительный и биоразлагаемый', 'На 70% состоит из органического растительного сырья.'],
-  [Globe2, 'Низкая цена — высокий эффект', 'Доступный продукт для систем здравоохранения с ограниченными ресурсами.'],
-];
+const benefitIcons = [Droplets, Leaf, Globe2];
 
 export default function Solution() {
+  const { content } = useI18n();
+  const text = content.solution;
+
   return (
     <section id="solution" className="section section--navy solution">
       <div className="container">
-        <SectionHeading light eyebrow="Продукт" title="Наше решение." copy="BananaPatch — гемостатический порошок, который абсорбирует кровь и запускает свёртывание за секунды. На 70% состоит из банановой кожуры — доступного органического сырья." />
+        <SectionHeading light eyebrow={text.eyebrow} title={text.title} copy={text.copy} />
         <div className="benefits-grid">
-          {benefits.map(([Icon, title, text], index) => {
-            const BenefitIcon = Icon as typeof Droplets;
-            return <motion.article className="benefit" key={title as string} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: index * 0.1 }}>
+          {text.benefits.map((benefit, index) => {
+            const BenefitIcon = benefitIcons[index];
+            return <motion.article className="benefit" key={benefit.title} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: index * 0.1 }}>
               <BenefitIcon size={26} strokeWidth={1.6} aria-hidden="true" />
-              <h3>{title as string}</h3><p>{text as string}</p>
+              <h3>{benefit.title}</h3><p>{benefit.copy}</p>
             </motion.article>;
           })}
         </div>
@@ -32,14 +32,14 @@ export default function Solution() {
         >
           <Media
             src="/images/product-lineup.png"
-            alt="Линейка BananaPatch: упаковка порошка, гемостатическая повязка и порошок"
+            alt={text.imageAlt}
             className="product-showcase__image"
-            label="Линейка продуктов BananaPatch"
+            label={text.imageLabel}
           />
           <figcaption className="product-showcase__legend">
-            <span><b>01</b> Упаковка</span>
-            <span><b>02</b> Повязка</span>
-            <span><b>03</b> Порошок</span>
+            <span><b>01</b> {text.package}</span>
+            <span><b>02</b> {text.dressing}</span>
+            <span><b>03</b> {text.powder}</span>
           </figcaption>
         </motion.figure>
       </div>

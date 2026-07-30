@@ -1,21 +1,20 @@
-const entries = [
-  ['Сырьё', '5%', 'var(--yellow)'],
-  ['Альгинат натрия', '15%', '#5370aa'],
-  ['Обработка', '20%', '#7690c5'],
-  ['Стерилизация', '20%', '#aab8d6'],
-  ['Упаковка', '25%', '#0a1b45'],
-  ['Контроль и логистика', '15%', '#d6deee'],
-];
+import { useI18n } from '../../i18n/I18nProvider';
+
+const values = ['5%', '15%', '20%', '20%', '25%', '15%'];
+const colors = ['var(--yellow)', '#5370aa', '#7690c5', '#aab8d6', '#0a1b45', '#d6deee'];
 
 export default function AnimatedDonutChart() {
+  const { content } = useI18n();
+  const text = content.uniqueness;
+
   return (
     <div className="donut-chart-wrap">
-      <div className="donut-chart" aria-label="Структура себестоимости одной упаковки: 100 тенге">
-        <div><strong>100 ₸</strong><span>себестоимость</span></div>
+      <div className="donut-chart" aria-label={text.donutAria}>
+        <div><strong>100 ₸</strong><span>{text.costLabel}</span></div>
       </div>
       <ul className="donut-legend">
-        {entries.map(([name, value, color]) => (
-          <li key={name}><i style={{ background: color }} /><span>{name}</span><b>{value}</b></li>
+        {text.costEntries.map((name, index) => (
+          <li key={name}><i style={{ background: colors[index] }} /><span>{name}</span><b>{values[index]}</b></li>
         ))}
       </ul>
     </div>

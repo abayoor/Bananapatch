@@ -5,16 +5,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeading from '../ui/SectionHeading';
 import Media from '../ui/Media';
+import { useI18n } from '../../i18n/I18nProvider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const layers = [
-  ['01', 'Банановая кожура — 70%', 'Основа порошка. Источник танинов, пектина и флавоноидов — доступное органическое сырьё пищевой промышленности. Танины связываются с белками крови и ускоряют образование сгустка.'],
-  ['02', 'Пектин — 15%', 'Природный полисахарид кожуры. При контакте с раневой жидкостью образует гель, который физически удерживает сгусток в ране, как сетка.'],
-  ['03', 'Альгинат кальция — 15%', 'Клинически проверенный биополимер. Ионный обмен Ca²⁺↔Na⁺ ускоряет каскад свёртывания и обеспечивает быстрое поглощение крови.'],
-];
-
 export default function Formula() {
+  const { content } = useI18n();
+  const text = content.formula;
   const root = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const stageTiltX = useMotionValue(0);
@@ -64,10 +61,10 @@ export default function Formula() {
       <div className="formula-pin">
         <div className="container formula__layout">
           <div className="formula__story">
-            <SectionHeading eyebrow="Материал и механизм" title={<>Внутри — природа,<br />усиленная наукой.</>} copy="Прокрутите историю: основа BananaPatch раскрывается слой за слоем." />
-            <div className="formula-conclusion"><CheckCircle2 size={20} aria-hidden="true" /><p>Доступное органическое сырьё + два клинически доказанных механизма гелеобразования и свёртывания = быстрая, надёжная и дешёвая остановка кровотечения.</p></div>
+            <SectionHeading eyebrow={text.eyebrow} title={<>{text.title[0]}<br />{text.title[1]}</>} copy={text.copy} />
+            <div className="formula-conclusion"><CheckCircle2 size={20} aria-hidden="true" /><p>{text.conclusion}</p></div>
           </div>
-          <div className="formula__visual" aria-label="Состав BananaPatch">
+          <div className="formula__visual" aria-label={text.visualAria}>
             <motion.div
               className="formula-stage"
               style={{ rotateX: reduceMotion ? 0 : stageRotateX, rotateY: reduceMotion ? 0 : stageRotateY }}
@@ -76,13 +73,13 @@ export default function Formula() {
             >
               <span className="formula-depth-plane formula-depth-plane--back" aria-hidden="true" />
               <span className="formula-depth-plane formula-depth-plane--middle" aria-hidden="true" />
-              <Media src="/images/hero-banana.png" alt="Целый банан для демонстрации состава BananaPatch" className="formula-whole" label="Банан: исходное сырьё" />
-              <Media src="/images/banana-cross-section.png" alt="Срез слоёв банановой кожуры" className="formula-cross" label="Срез банановой кожуры" />
-              <span className="formula-stage__caption"><Layers3 size={15} aria-hidden="true" /> раскрываем состав</span>
+              <Media src="/images/hero-banana.png" alt={text.bananaAlt} className="formula-whole" label={text.bananaLabel} />
+              <Media src="/images/banana-cross-section.png" alt={text.crossAlt} className="formula-cross" label={text.crossLabel} />
+              <span className="formula-stage__caption"><Layers3 size={15} aria-hidden="true" /> {text.caption}</span>
               <span className="formula-stage__glare" aria-hidden="true" />
             </motion.div>
             <div className="formula-callouts">
-              {layers.map(([number, title, copy]) => <article className="formula-callout" key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}
+              {text.layers.map((layer, index) => <article className="formula-callout" key={layer.title}><span>0{index + 1}</span><div><h3>{layer.title}</h3><p>{layer.copy}</p></div></article>)}
             </div>
           </div>
         </div>

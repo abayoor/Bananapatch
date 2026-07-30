@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/I18nProvider';
 
 const data = [
   { name: 'BananaPatch', price: '500 ₸', height: '6%', featured: true },
@@ -9,8 +10,10 @@ const data = [
 ];
 
 export default function AnimatedBarChart() {
+  const { content } = useI18n();
+
   return (
-    <div className="bar-chart" aria-label="Сравнение стоимости гемостатических средств">
+    <div className="bar-chart" aria-label={content.uniqueness.barAria}>
       {data.map((item, index) => (
         <div className="bar-chart__item" key={item.name}>
           <motion.div

@@ -1,12 +1,8 @@
-const messages = [
-  '70% растительное сырьё',
-  'Остановка крови за секунды',
-  'В 50 раз доступнее',
-  'Локальное производство',
-  'Органика — в помощь',
-];
+import { useI18n } from '../../i18n/I18nProvider';
 
 export default function ImpactTicker() {
+  const { content } = useI18n();
+  const messages = content.ticker;
   const loop = [...messages, ...messages];
 
   return (
