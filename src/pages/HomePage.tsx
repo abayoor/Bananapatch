@@ -1,13 +1,31 @@
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import Hero from '../components/sections/Hero';
+import Problem from '../components/sections/Problem';
+import Solution from '../components/sections/Solution';
+import Formula from '../components/sections/Formula';
+import Process from '../components/sections/Process';
+import Uniqueness from '../components/sections/Uniqueness';
+import Audience from '../components/sections/Audience';
+import Scaling from '../components/sections/Scaling';
+import TrustBadges from '../components/sections/TrustBadges';
+import Team from '../components/sections/Team';
+
 export function HomePage() {
-  return (
-    <main className="container">
-      <section className="hello">
-        <h1>Привет! 🚀</h1>
-        <p>Это твой проект. Пока тут пусто — самое интересное впереди.</p>
-        <p className="hello__hint">
-          Открой Codex и опиши свою идею — этот экран станет твоим приложением.
-        </p>
-      </section>
-    </main>
-  );
+  return <>
+  <Header />
+  <main>
+    <Hero />
+    <Problem />
+    <Solution />
+    <Formula />
+    <Process />
+    <Uniqueness />
+    <Audience />
+    <Scaling />
+    <TrustBadges />
+    <Team />
+  </main>
+  <Footer />
+  </>;
 }
