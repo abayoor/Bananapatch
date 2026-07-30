@@ -32,11 +32,10 @@ export default function Formula() {
         },
       });
       timeline
-        .to('.formula-whole', { opacity: 0, scale: 0.88, y: -28, duration: 0.9 })
-        .to('.formula-peel', { opacity: 1, rotate: -33, x: -88, y: 18, duration: 1.05 }, 0.25)
-        .to('.formula-cross', { opacity: 1, scale: 1, duration: 1.1 }, 0.7)
+        .to('.formula-whole', { opacity: 0, scale: 0.9, y: -18, duration: 0.55 })
+        .to('.formula-cross', { opacity: 1, scale: 1, duration: 0.7 }, 0.62)
         .to('.formula-callout', { opacity: 1, x: 0, stagger: 0.2, duration: 0.7 }, 1.15)
-        .to('.formula-conclusion', { opacity: 1, y: 0, duration: 0.7 }, 2.0);
+        .to('.formula-conclusion', { opacity: 1, y: 0, duration: 0.7 }, 1.95);
     }, root);
     return () => context.revert();
   }, [reduceMotion]);
@@ -51,9 +50,7 @@ export default function Formula() {
           </div>
           <div className="formula__visual" aria-label="Состав BananaPatch">
             <div className="formula-stage">
-              {/* Replace these two paths with source photos from the presentation when they are prepared. */}
               <Media src="/images/hero-banana.png" alt="Целый банан для демонстрации состава BananaPatch" className="formula-whole" label="Банан: исходное сырьё" />
-              <span className="formula-peel" aria-hidden="true" />
               <Media src="/images/banana-cross-section.png" alt="Срез слоёв банановой кожуры" className="formula-cross" label="Срез банановой кожуры" />
               <span className="formula-stage__caption"><Layers3 size={15} aria-hidden="true" /> раскрываем состав</span>
             </div>
