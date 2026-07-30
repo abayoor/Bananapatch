@@ -14,13 +14,27 @@ export default function Process() {
     <section id="process" className="section process">
       <div className="container">
         <SectionHeading eyebrow="От отходов к помощи" title="Как это производится." copy="Небольшое количество понятных процессов превращает доступное растительное сырьё в готовый гемостатический продукт." />
-        <div className="process-line" aria-hidden="true" />
+        <motion.div
+          className="process-line"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
+          aria-hidden="true"
+        />
         <div className="process-grid">
           {steps.map(([number, title, copy, src, alt], index) => (
-            <motion.article className="process-card" key={number} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.09 }}>
+            <motion.article
+              className="process-card"
+              key={number}
+              initial={{ opacity: 0, y: 38, rotateX: 7 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              whileHover={{ y: -8 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: index * 0.09, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="process-card__number">{number}</div>
-              {/* Add each authentic production photo at the listed path in public/images. */}
-              <Media src={src} alt={alt} className="process-card__image" label={title} />
+              <div className="process-card__media"><Media src={src} alt={alt} className="process-card__image" label={title} /></div>
               <h3>{title}</h3><p>{copy}</p>
             </motion.article>
           ))}

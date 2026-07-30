@@ -14,8 +14,7 @@ export default function Team() {
         <SectionHeading light eyebrow="Люди за продуктом" title="Команда." copy="Объединяем исследовательскую работу, инженерную разработку и коммерческое мышление, чтобы сделать экстренную помощь доступнее." />
         <div className="team-grid">
           {team.map(([name, role, copy, src, alt], index) => (
-            <motion.article key={name} className="team-card" initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ delay: index * 0.1 }} whileHover={{ y: -6 }}>
-              {/* Add the approved portrait to this exact path when it is available. */}
+            <motion.article key={name} className="team-card" initial={{ opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8 }}>
               <Media src={src} alt={alt} className="team-card__image" label={name} />
               <div className="team-card__copy"><span>{role}</span><h3>{name}</h3><p>{copy}</p></div>
             </motion.article>

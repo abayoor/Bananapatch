@@ -1,6 +1,8 @@
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import ScrollProgress from '../components/ui/ScrollProgress';
 import Hero from '../components/sections/Hero';
+import ImpactTicker from '../components/sections/ImpactTicker';
 import Problem from '../components/sections/Problem';
 import Solution from '../components/sections/Solution';
 import Formula from '../components/sections/Formula';
@@ -13,9 +15,11 @@ import Team from '../components/sections/Team';
 
 export function HomePage() {
   return <>
+  <ScrollProgress />
   <Header />
   <main>
     <Hero />
+    <ImpactTicker />
     <Problem />
     <Solution />
     <Formula />

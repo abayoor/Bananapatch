@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 type StatCounterProps = {
   end: number;
   display: (value: number) => string;
   label: string;
+  delay?: number;
 };
 
-export default function StatCounter({ end, display, label }: StatCounterProps) {
+export default function StatCounter({ end, display, label, delay = 0 }: StatCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useInView(ref, { once: true, amount: 0.65 });
   const reducedMotion = useReducedMotion();
@@ -33,9 +34,17 @@ export default function StatCounter({ end, display, label }: StatCounterProps) {
   }, [end, reducedMotion, visible]);
 
   return (
-    <div className="stat-card" ref={ref}>
+    <motion.div
+      className="stat-card"
+      ref={ref}
+      initial={{ opacity: 0, y: 34, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      whileHover={reducedMotion ? undefined : { y: -7 }}
+      viewport={{ once: true, amount: 0.45 }}
+      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
       <strong>{display(value)}</strong>
       <span>{label}</span>
-    </div>
+    </motion.div>
   );
 }

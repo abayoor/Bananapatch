@@ -17,7 +17,16 @@ export default function Audience() {
         <SectionHeading light eyebrow="Доступ там, где он важнее всего" title="Где это особенно нужно." copy="BananaPatch создаётся с расчётом на регионы, где время, логистика и стоимость определяют, будет ли помощь доступна." />
         <div className="country-grid">
           {countries.map(({ flag, name, points }, index) => (
-            <motion.article className="country-card" key={name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: index * 0.1 }}>
+            <motion.article
+              className="country-card"
+              key={name}
+              initial={{ opacity: 0, y: 34, rotateY: -4 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              whileHover={{ y: -9, rotateY: 1.5 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="country-card__index" aria-hidden="true">0{index + 1}</span>
               <div className="country-card__top"><span className="country-flag" role="img" aria-label={`Флаг ${name}`}>{flag}</span><ArrowUpRight size={19} aria-hidden="true" /></div>
               <h3>{name}</h3>
               <ul>{points.map(point => <li key={point}>{point}</li>)}</ul>

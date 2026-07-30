@@ -1,0 +1,27 @@
+@media (max-width: 900px) {
+  .hero__metric--plant { top: 9%; right: -5%; }
+  .hero__metric--cost { right: 0; bottom: 16%; }
+  .hero__metric { min-width: 132px; padding: 11px 13px; }
+  .hero__metric strong { font-size: 21px; }
+}
+
+@media (max-width: 680px) {
+  .hero__particles { opacity: .16; }
+  .hero__spotlight { top: 38%; right: -50%; width: 360px; height: 360px; }
+  .hero__title-line { padding-right: 0; }
+  .hero__visual { position: absolute; right: -62px; bottom: 30px; width: 60%; min-height: 235px; opacity: .75; pointer-events: none; }
+  .hero__product { position: relative; right: auto; bottom: auto; width: 100%; min-height: 235px; }
+  .hero__halo i { --orbit-radius: 130px; }
+  .hero__halo i:last-child { --orbit-radius: 90px; }
+  .hero__metric { display: none; }
+  .impact-ticker__track span { gap: 18px; padding: 17px 18px; font-size: 12px; }
+  .impact-ticker__track { animation-duration: 20s; }
+  .product-card figcaption { right: 12px; bottom: 12px; }
+  .country-card__index { font-size: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-ticker__track, .hero__halo, .hero__halo i { animation: none; }
+  .impact-ticker__track { transform: translateX(0); }
+  .button::before, .site-nav > a::after, .product-card__image, .process-card__image, .team-card__image { transition: none; }
+}

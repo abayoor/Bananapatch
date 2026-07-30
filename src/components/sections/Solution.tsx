@@ -31,10 +31,17 @@ export default function Solution() {
         </div>
         <div className="product-gallery">
           {products.map(([src, alt, caption], index) => (
-            <motion.figure key={src} className={`product-card product-card--${index + 1}`} whileHover={{ y: -7, scale: 1.015 }} transition={{ type: 'spring', stiffness: 260, damping: 24 }}>
-              {/* Each item keeps its final asset path; simply add the matching file to public/images. */}
+            <motion.figure
+              key={src}
+              className={`product-card product-card--${index + 1}`}
+              initial={{ opacity: 0, y: 46, clipPath: 'inset(12% 0 0 round 18px)' }}
+              whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0 0 round 18px)' }}
+              viewport={{ once: true, amount: 0.25 }}
+              whileHover={{ y: -9, scale: 1.012 }}
+              transition={{ duration: 0.75, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Media src={src} alt={alt} className="product-card__image" label={caption} />
-              <figcaption>{caption}</figcaption>
+              <figcaption><span>0{index + 1}</span>{caption}</figcaption>
             </motion.figure>
           ))}
         </div>
