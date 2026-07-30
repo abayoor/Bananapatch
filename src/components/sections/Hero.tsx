@@ -87,6 +87,7 @@ export default function Hero() {
             transition={{ duration: 1.15, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="hero__halo" aria-hidden="true"><i /><i /></span>
+            <span className="hero__depth-shadow" aria-hidden="true" />
             <motion.div
               className="hero__packshot"
               initial={reduceMotion ? false : { clipPath: 'inset(100% 0 0 round 28px)' }}

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { CheckCircle2, Layers3 } from 'lucide-react';
-import { useReducedMotion } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeading from '../ui/SectionHeading';
@@ -17,6 +17,24 @@ const layers = [
 export default function Formula() {
   const root = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
+  const stageTiltX = useMotionValue(0);
+  const stageTiltY = useMotionValue(0);
+  const stageRotateX = useSpring(stageTiltX, { stiffness: 130, damping: 22 });
+  const stageRotateY = useSpring(stageTiltY, { stiffness: 130, damping: 22 });
+
+  const tiltStage = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reduceMotion || event.pointerType !== 'mouse') return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    stageTiltX.set(y * -5);
+    stageTiltY.set(x * 7);
+  };
+
+  const resetStage = () => {
+    stageTiltX.set(0);
+    stageTiltY.set(0);
+  };
 
   useEffect(() => {
     if (reduceMotion || window.innerWidth < 800 || !root.current) return;
@@ -33,6 +51,7 @@ export default function Formula() {
       });
       timeline
         .to('.formula-whole', { opacity: 0, scale: 0.9, y: -18, duration: 0.55 })
+        .to('.formula-depth-plane', { opacity: 1, rotateY: -18, stagger: 0.08, duration: 0.65 }, 0.52)
         .to('.formula-cross', { opacity: 1, scale: 1, duration: 0.7 }, 0.62)
         .to('.formula-callout', { opacity: 1, x: 0, stagger: 0.2, duration: 0.7 }, 1.15)
         .to('.formula-conclusion', { opacity: 1, y: 0, duration: 0.7 }, 1.95);
@@ -49,11 +68,19 @@ export default function Formula() {
             <div className="formula-conclusion"><CheckCircle2 size={20} aria-hidden="true" /><p>Сырьё по цене отходов + два клинически доказанных механизма гелеобразования и свёртывания = быстрая, надёжная и дешёвая остановка кровотечения.</p></div>
           </div>
           <div className="formula__visual" aria-label="Состав BananaPatch">
-            <div className="formula-stage">
+            <motion.div
+              className="formula-stage"
+              style={{ rotateX: reduceMotion ? 0 : stageRotateX, rotateY: reduceMotion ? 0 : stageRotateY }}
+              onPointerMove={tiltStage}
+              onPointerLeave={resetStage}
+            >
+              <span className="formula-depth-plane formula-depth-plane--back" aria-hidden="true" />
+              <span className="formula-depth-plane formula-depth-plane--middle" aria-hidden="true" />
               <Media src="/images/hero-banana.png" alt="Целый банан для демонстрации состава BananaPatch" className="formula-whole" label="Банан: исходное сырьё" />
               <Media src="/images/banana-cross-section.png" alt="Срез слоёв банановой кожуры" className="formula-cross" label="Срез банановой кожуры" />
               <span className="formula-stage__caption"><Layers3 size={15} aria-hidden="true" /> раскрываем состав</span>
-            </div>
+              <span className="formula-stage__glare" aria-hidden="true" />
+            </motion.div>
             <div className="formula-callouts">
               {layers.map(([number, title, copy]) => <article className="formula-callout" key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}
             </div>
