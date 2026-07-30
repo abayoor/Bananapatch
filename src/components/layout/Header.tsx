@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Menu, ShieldCheck, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Button from '../ui/Button';
 
 const nav = [
@@ -24,7 +24,7 @@ export default function Header() {
   return (
     <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
       <a className="brand" href="#top" aria-label="BananaPatch — на главную">
-        <span className="brand__mark"><ShieldCheck size={21} aria-hidden="true" /></span>
+        <span className="brand__mark"><img src="/images/logo.png" alt="" /></span>
         <span>Banana<span>Patch</span></span>
       </a>
 

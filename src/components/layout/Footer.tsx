@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Phone, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer__bottom">
-        <div className="brand"><span className="brand__mark"><ShieldCheck size={19} aria-hidden="true" /></span><span>Banana<span>Patch</span></span></div>
+        <div className="brand"><span className="brand__mark"><img src="/images/logo.png" alt="" /></span><span>Banana<span>Patch</span></span></div>
         <span>© 2026 BananaPatch. Абай &amp; Сейтали.</span>
         <a href="#top" className="back-to-top">Наверх ↑</a>
       </div>
