@@ -86,8 +86,18 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1.15, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Media src="/images/hero-banana.png" alt="Целый жёлтый банан — сырьё BananaPatch" className="hero__banana" eager label="Студийное фото банана" />
             <span className="hero__halo" aria-hidden="true"><i /><i /></span>
+            <motion.div
+              className="hero__packshot"
+              initial={reduceMotion ? false : { clipPath: 'inset(100% 0 0 round 28px)' }}
+              animate={{ clipPath: 'inset(0% 0 0 round 28px)' }}
+              transition={{ duration: 1.15, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Media src="/images/product-pouch-front.png" alt="BananaPatch: упаковка, порошок и гемостатическая повязка" className="hero__packshot-image" eager label="Готовый продукт BananaPatch" />
+              <span className="hero__packshot-label">01 / готовый продукт</span>
+              <span className="hero__scanline" aria-hidden="true" />
+            </motion.div>
+            <Media src="/images/hero-banana.png" alt="Целый жёлтый банан — сырьё BananaPatch" className="hero__banana" eager label="Студийное фото банана" />
           </motion.div>
           <motion.div className="hero__metric hero__metric--plant" animate={reduceMotion ? undefined : { y: [0, -8, 0] }} transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}>
             <strong>70%</strong><span>растительная основа</span>

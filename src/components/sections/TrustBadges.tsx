@@ -1,9 +1,9 @@
-import { BadgeCheck, FileCheck2, Sparkles } from 'lucide-react';
+import { BadgeCheck, FileCheck2, Leaf } from 'lucide-react';
 
 const badges = [
   [FileCheck2, 'Патент подан', 'Kazpatent №490282'],
   [BadgeCheck, 'Класс I медицинское изделие', 'EAEU, решение №46 от 12.02.2016'],
-  [Sparkles, 'Резидент акселератора', 'SIA Kazakhstan 2026'],
+  [Leaf, 'Растительная основа', '70% банановая кожура'],
 ];
 
 export default function TrustBadges() {

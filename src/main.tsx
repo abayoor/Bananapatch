@@ -4,6 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import './motion.css';
 import './motion-responsive.css';
+import './art-direction.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
