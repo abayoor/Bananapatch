@@ -70,7 +70,7 @@ export default function Hero() {
             ))}
           </h1>
           <motion.p className="hero__lead" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.58, duration: 0.65 }}>
-            BananaPatch — гемостатический порошок из банановой кожуры. В 50 раз дешевле импортных аналогов и производится из органических отходов пищевой промышленности.
+            BananaPatch — гемостатический порошок из банановой кожуры. В 50 раз дешевле импортных аналогов и производится из доступного органического сырья.
           </motion.p>
           <motion.div className="hero__actions" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.72, duration: 0.6 }}>
             <Button href="#solution">Узнать больше <ArrowDown size={17} aria-hidden="true" /></Button>
@@ -94,11 +94,10 @@ export default function Hero() {
               animate={{ clipPath: 'inset(0% 0 0 round 28px)' }}
               transition={{ duration: 1.15, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
             >
-              <Media src="/images/product-pouch-front.png" alt="BananaPatch: упаковка, порошок и гемостатическая повязка" className="hero__packshot-image" eager label="Готовый продукт BananaPatch" />
+              <Media src="/images/hero-product-minimal.png" alt="Минималистичная упаковка BananaPatch" className="hero__packshot-image" eager label="Готовый продукт BananaPatch" />
               <span className="hero__packshot-label">01 / готовый продукт</span>
               <span className="hero__scanline" aria-hidden="true" />
             </motion.div>
-            <Media src="/images/hero-banana.png" alt="Целый жёлтый банан — сырьё BananaPatch" className="hero__banana" eager label="Студийное фото банана" />
           </motion.div>
           <motion.div className="hero__metric hero__metric--plant" animate={reduceMotion ? undefined : { y: [0, -8, 0] }} transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}>
             <strong>70%</strong><span>растительная основа</span>

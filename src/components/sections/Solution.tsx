@@ -5,21 +5,15 @@ import Media from '../ui/Media';
 
 const benefits = [
   [Droplets, 'Останавливает кровотечение', 'Абсорбирует кровь и помогает запустить свёртывание за секунды.'],
-  [Leaf, 'Растительный и биоразлагаемый', 'На 70% состоит из растительного сырья, которое обычно становится отходами.'],
+  [Leaf, 'Растительный и биоразлагаемый', 'На 70% состоит из органического растительного сырья.'],
   [Globe2, 'Низкая цена — высокий эффект', 'Доступный продукт для систем здравоохранения с ограниченными ресурсами.'],
-];
-
-const products = [
-  ['/images/product-pouch-front.png', 'Упаковка гемостатического порошка BananaPatch', 'Порошок'],
-  ['/images/product-pouch-pouring.png', 'BananaPatch: упаковка с высыпающимся порошком', 'Применение'],
-  ['/images/product-gauze-pad.png', 'Марлевая повязка с порошком BananaPatch', 'Повязка'],
 ];
 
 export default function Solution() {
   return (
     <section id="solution" className="section section--navy solution">
       <div className="container">
-        <SectionHeading light eyebrow="Продукт" title="Наше решение." copy="BananaPatch — гемостатический порошок, который абсорбирует кровь и запускает свёртывание за секунды. На 70% состоит из банановой кожуры — сырья, которое обычно выбрасывается пищевой промышленностью." />
+        <SectionHeading light eyebrow="Продукт" title="Наше решение." copy="BananaPatch — гемостатический порошок, который абсорбирует кровь и запускает свёртывание за секунды. На 70% состоит из банановой кожуры — доступного органического сырья." />
         <div className="benefits-grid">
           {benefits.map(([Icon, title, text], index) => {
             const BenefitIcon = Icon as typeof Droplets;
@@ -29,22 +23,25 @@ export default function Solution() {
             </motion.article>;
           })}
         </div>
-        <div className="product-gallery">
-          {products.map(([src, alt, caption], index) => (
-            <motion.figure
-              key={src}
-              className={`product-card product-card--${index + 1}`}
-              initial={{ opacity: 0, y: 46, clipPath: 'inset(12% 0 0 round 18px)' }}
-              whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0 0 round 18px)' }}
-              viewport={{ once: true, amount: 0.25 }}
-              whileHover={{ y: -9, scale: 1.012 }}
-              transition={{ duration: 0.75, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Media src={src} alt={alt} className="product-card__image" label={caption} />
-              <figcaption><span>0{index + 1}</span>{caption}</figcaption>
-            </motion.figure>
-          ))}
-        </div>
+        <motion.figure
+          className="product-showcase"
+          initial={{ opacity: 0, y: 42, clipPath: 'inset(10% 0 0 round 24px)' }}
+          whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0 0 round 24px)' }}
+          viewport={{ once: true, amount: 0.22 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Media
+            src="/images/product-lineup.png"
+            alt="Линейка BananaPatch: упаковка порошка, гемостатическая повязка и порошок"
+            className="product-showcase__image"
+            label="Линейка продуктов BananaPatch"
+          />
+          <figcaption className="product-showcase__legend">
+            <span><b>01</b> Упаковка</span>
+            <span><b>02</b> Повязка</span>
+            <span><b>03</b> Порошок</span>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );

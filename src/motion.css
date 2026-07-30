@@ -49,19 +49,8 @@
 .stat-card { position: relative; overflow: hidden; transition: border-color .35s, box-shadow .35s; }
 .stat-card::before { position: absolute; top: 0; left: 0; width: 44px; height: 44px; border-radius: 14px 0 30px; background: linear-gradient(135deg, var(--yellow) 0 48%, var(--navy-700) 49% 100%); box-shadow: 1px 1px 0 rgba(255,255,255,.35); content: ''; }
 .stat-card:hover { border-color: rgba(10,27,69,.18); box-shadow: 0 28px 65px rgba(27,48,85,.1); }
-.product-card::after { position: absolute; inset: auto 0 0; height: 36%; background: linear-gradient(transparent, rgba(5,14,35,.38)); content: ''; pointer-events: none; }
-.product-card__image { transition: transform .8s cubic-bezier(.16,1,.3,1), filter .5s; }
-.product-card:hover .product-card__image { transform: scale(1.055); filter: saturate(1.06) contrast(1.02); }
-.product-card figcaption { z-index: 2; display: flex; align-items: center; gap: 8px; }
-.product-card figcaption span { color: var(--yellow-dark); }
-
-.process-grid { perspective: 1200px; }
-.process-line { animation: none; }
-.process-card { overflow: hidden; transition: border-color .35s, box-shadow .35s; transform-style: preserve-3d; }
-.process-card:hover { border-color: rgba(10,27,69,.22); box-shadow: 0 24px 55px rgba(20,48,111,.1); }
-.process-card__media { overflow: hidden; margin-bottom: 23px; border-radius: 9px; }
-.process-card__media .process-card__image, .process-card__media .media-placeholder { margin: 0; border-radius: 0; transition: transform .8s cubic-bezier(.16,1,.3,1); }
-.process-card:hover .process-card__image { transform: scale(1.07); }
+.product-showcase__image { transition: transform 1.1s cubic-bezier(.16,1,.3,1), filter .6s; }
+.product-showcase:hover .product-showcase__image { transform: scale(1.018); filter: saturate(1.025) contrast(1.01); }
 .country-grid { perspective: 1200px; }
 .country-card { position: relative; overflow: hidden; transform-style: preserve-3d; transition: border-color .35s, box-shadow .35s; }
 .country-card::before { position: absolute; top: -90px; right: -90px; width: 230px; height: 230px; border-radius: 50%; background: rgba(255,199,44,.11); content: ''; filter: blur(4px); transform: scale(.5); transition: transform .7s cubic-bezier(.16,1,.3,1); }

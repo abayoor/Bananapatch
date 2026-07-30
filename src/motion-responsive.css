@@ -16,12 +16,11 @@
   .hero__metric { display: none; }
   .impact-ticker__track span { gap: 18px; padding: 17px 18px; font-size: 12px; }
   .impact-ticker__track { animation-duration: 20s; }
-  .product-card figcaption { right: 12px; bottom: 12px; }
   .country-card__index { font-size: 64px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .impact-ticker__track, .hero__halo, .hero__halo i { animation: none; }
   .impact-ticker__track { transform: translateX(0); }
-  .button::before, .site-nav > a::after, .product-card__image, .process-card__image, .team-card__image { transition: none; }
+  .button::before, .site-nav > a::after, .product-showcase__image, .team-card__image { transition: none; }
 }

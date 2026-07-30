@@ -6,7 +6,6 @@ import ImpactTicker from '../components/sections/ImpactTicker';
 import Problem from '../components/sections/Problem';
 import Solution from '../components/sections/Solution';
 import Formula from '../components/sections/Formula';
-import Process from '../components/sections/Process';
 import Uniqueness from '../components/sections/Uniqueness';
 import Audience from '../components/sections/Audience';
 import Scaling from '../components/sections/Scaling';
@@ -23,7 +22,6 @@ export function HomePage() {
     <Problem />
     <Solution />
     <Formula />
-    <Process />
     <Uniqueness />
     <Audience />
     <Scaling />
