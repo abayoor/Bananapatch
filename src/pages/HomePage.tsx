@@ -1,33 +1,34 @@
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import ScrollProgress from '../components/ui/ScrollProgress';
-import Hero from '../components/sections/Hero';
-import ImpactTicker from '../components/sections/ImpactTicker';
-import Problem from '../components/sections/Problem';
+import PitchHeader from '../components/layout/PitchHeader';
+import PitchFooter from '../components/layout/PitchFooter';
+import PitchHero from '../components/sections/PitchHero';
+import PitchProblem from '../components/sections/PitchProblem';
+import PitchComposition from '../components/sections/PitchComposition';
+import PitchMarket from '../components/sections/PitchMarket';
+import PitchPricing from '../components/sections/PitchPricing';
+import PitchExpertise from '../components/sections/PitchExpertise';
+import PitchTraction from '../components/sections/PitchTraction';
+import PitchTeam from '../components/sections/PitchTeam';
+import PitchCalculator from '../components/sections/PitchCalculator';
 import Solution from '../components/sections/Solution';
-import Formula from '../components/sections/Formula';
-import Uniqueness from '../components/sections/Uniqueness';
-import Audience from '../components/sections/Audience';
-import Scaling from '../components/sections/Scaling';
-import TrustBadges from '../components/sections/TrustBadges';
-import Team from '../components/sections/Team';
 
+// Solution ниже — временный каркас из старого дизайна для «Как это работает»
+// (sticky-сцена), которая ещё не переведена на новую дизайн-систему
+// (самый сложный шаг ТЗ, идёт последним).
 export function HomePage() {
   return <>
-  <ScrollProgress />
-  <Header />
+  <PitchHeader />
   <main>
-    <Hero />
-    <ImpactTicker />
-    <Problem />
+    <PitchHero />
+    <PitchProblem />
     <Solution />
-    <Formula />
-    <Uniqueness />
-    <Audience />
-    <Scaling />
-    <TrustBadges />
-    <Team />
+    <PitchComposition />
+    <PitchMarket />
+    <PitchPricing />
+    <PitchCalculator />
+    <PitchExpertise />
+    <PitchTraction />
+    <PitchTeam />
   </main>
-  <Footer />
+  <PitchFooter />
   </>;
 }

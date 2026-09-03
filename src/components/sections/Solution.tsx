@@ -1,5 +1,4 @@
 import { Droplets, Leaf, Globe2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Media from '../ui/Media';
 import { useI18n } from '../../i18n/I18nProvider';
@@ -17,19 +16,16 @@ export default function Solution() {
         <div className="benefits-grid">
           {text.benefits.map((benefit, index) => {
             const BenefitIcon = benefitIcons[index];
-            return <motion.article className="benefit" key={benefit.title} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ delay: index * 0.1 }}>
-              <BenefitIcon size={26} strokeWidth={1.6} aria-hidden="true" />
-              <h3>{benefit.title}</h3><p>{benefit.copy}</p>
-            </motion.article>;
+            return (
+              <article className="benefit" key={benefit.title}>
+                <BenefitIcon size={26} strokeWidth={1.6} aria-hidden="true" />
+                <h3>{benefit.title}</h3>
+                <p>{benefit.copy}</p>
+              </article>
+            );
           })}
         </div>
-        <motion.figure
-          className="product-showcase"
-          initial={{ opacity: 0, y: 42, clipPath: 'inset(10% 0 0 round 24px)' }}
-          whileInView={{ opacity: 1, y: 0, clipPath: 'inset(0% 0 0 round 24px)' }}
-          viewport={{ once: true, amount: 0.22 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <figure className="product-showcase">
           <Media
             src="/images/product-lineup.png"
             alt={text.imageAlt}
@@ -41,7 +37,7 @@ export default function Solution() {
             <span><b>02</b> {text.dressing}</span>
             <span><b>03</b> {text.powder}</span>
           </figcaption>
-        </motion.figure>
+        </figure>
       </div>
     </section>
   );

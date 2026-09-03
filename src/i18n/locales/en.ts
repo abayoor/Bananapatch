@@ -2,10 +2,10 @@ import type { SiteContent } from '../types';
 
 export const en: SiteContent = {
   meta: {
-    title: 'BananaPatch — hemostatic powder',
-    description: 'BananaPatch is an affordable hemostatic powder made from banana peel.',
+    title: 'BananaPatch — hemostatic patch',
+    description: 'BananaPatch is the most affordable hemostatic patch made from banana peel.',
     ogTitle: 'BananaPatch — stop bleeding in seconds',
-    ogDescription: 'Hemostatic powder made from banana peel.',
+    ogDescription: 'Hemostatic patch made from banana peel.',
   },
   language: { aria: 'Choose website language', ru: 'Русский', kk: 'Қазақша', en: 'English' },
   nav: {
@@ -22,7 +22,7 @@ export const en: SiteContent = {
       { text: 'of seconds.' },
     ],
     titleAria: 'Technology that stops bleeding in a matter of seconds.',
-    lead: 'BananaPatch is a hemostatic powder made from banana peel. It is 50 times less expensive than imported alternatives and produced from accessible organic raw material.',
+    lead: 'BananaPatch is a hemostatic patch made from banana peel. It is 50 times less expensive than imported alternatives and produced from accessible organic raw material.',
     learnMore: 'Learn more', contact: 'Contact us',
     imageAlt: 'Minimal BananaPatch package',
     imageLabel: 'Finished BananaPatch product',
@@ -45,15 +45,15 @@ export const en: SiteContent = {
   },
   solution: {
     eyebrow: 'Product', title: 'Our solution.',
-    copy: 'BananaPatch is a hemostatic powder that absorbs blood and triggers clotting in seconds. It is made of 70% banana peel — an accessible organic raw material.',
+    copy: 'BananaPatch is a hemostatic patch that absorbs blood and triggers clotting in seconds. It is made of 70% banana peel — an accessible organic raw material.',
     benefits: [
       { title: 'Stops bleeding', copy: 'Absorbs blood and helps trigger clotting in seconds.' },
       { title: 'Plant-based and biodegradable', copy: 'Made of 70% organic plant-based material.' },
       { title: 'Low cost — high impact', copy: 'An affordable product for healthcare systems with limited resources.' },
     ],
-    imageAlt: 'BananaPatch range: powder package, hemostatic dressing and powder',
+    imageAlt: 'BananaPatch range: pouch, hemostatic dressing and patch',
     imageLabel: 'BananaPatch product range',
-    package: 'Package', dressing: 'Dressing', powder: 'Powder',
+    package: 'Package', dressing: 'Dressing', powder: 'Patch',
   },
   formula: {
     eyebrow: 'Material and mechanism', title: ['Nature inside,', 'strengthened by science.'],

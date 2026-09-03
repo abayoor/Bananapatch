@@ -25,5 +25,15 @@ export default function Media({ src, alt, className = '', label, eager = false }
     );
   }
 
-  return <img className={className} src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} onError={() => setMissing(true)} />;
+  return (
+    <img
+      className={className}
+      src={src}
+      alt={alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchPriority={eager ? 'high' : 'auto'}
+      onError={() => setMissing(true)}
+    />
+  );
 }

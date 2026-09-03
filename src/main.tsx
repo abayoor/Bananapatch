@@ -6,6 +6,7 @@ import './index.css';
 import './motion.css';
 import './motion-responsive.css';
 import './art-direction.css';
+import './pitch-design.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

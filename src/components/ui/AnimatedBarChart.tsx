@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/I18nProvider';
 
 const data = [
@@ -14,17 +13,14 @@ export default function AnimatedBarChart() {
 
   return (
     <div className="bar-chart" aria-label={content.uniqueness.barAria}>
-      {data.map((item, index) => (
+      {data.map((item) => (
         <div className="bar-chart__item" key={item.name}>
-          <motion.div
+          <div
             className={`bar-chart__bar ${item.featured ? 'bar-chart__bar--featured' : ''}`}
-            initial={{ height: 0 }}
-            whileInView={{ height: item.height }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.75, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+            style={{ height: item.height }}
           >
             <span>{item.price}</span>
-          </motion.div>
+          </div>
           <small>{item.name}</small>
         </div>
       ))}
