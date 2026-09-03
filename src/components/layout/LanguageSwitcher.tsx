@@ -7,7 +7,7 @@ const options: { code: Locale; short: string }[] = [
   { code: 'en', short: 'EN' },
 ];
 
-export default function LanguageSwitcher({ onChange }: { onChange?: () => void }) {
+export default function LanguageSwitcher({ onChange, className }: { onChange?: () => void; className?: string }) {
   const { locale, content, setLocale } = useI18n();
 
   const choose = (nextLocale: Locale) => {
@@ -16,7 +16,7 @@ export default function LanguageSwitcher({ onChange }: { onChange?: () => void }
   };
 
   return (
-    <div className="language-switcher" role="group" aria-label={content.language.aria}>
+    <div className={`language-switcher ${className ?? ''}`} role="group" aria-label={content.language.aria}>
       {options.map(({ code, short }) => (
         <button
           type="button"

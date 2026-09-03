@@ -278,9 +278,9 @@ html body {
   margin-inline: auto;
   min-height: 76px;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .bp-header__brand {
@@ -327,12 +327,7 @@ html body {
 .bp-header__link:hover { color: var(--bp-white); }
 .bp-header__link:hover::after { transform: scaleX(1); }
 
-.bp-header__tail {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  justify-self: end;
-}
+.bp-header__lang { justify-self: end; }
 
 .bp-header .language-switcher {
   display: inline-flex;
@@ -420,8 +415,17 @@ html body {
 .bp-mobile-nav .bp-btn { margin-top: 1rem; }
 
 @media (max-width: 900px) {
-  .bp-header__nav, .bp-header__tail { display: none; }
+  .bp-header__nav, .bp-header__cta { display: none; }
   .bp-header__burger { display: flex; }
+  .bp-header__lang .language-switcher button { min-width: 26px; height: 24px; font-size: 9px; }
+}
+
+@media (max-width: 420px) {
+  /* Brand wordmark + full switcher + burger no longer fit one row at this
+     width — drop the wordmark and keep just the mark, which is still a
+     recognisable logo, rather than let the two controls overlap it. */
+  .bp-header__brand span { display: none; }
+  .bp-header__inner { gap: 0.4rem; }
 }
 
 /* ==========================================================================

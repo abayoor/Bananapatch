@@ -42,10 +42,9 @@ export default function PitchHeader() {
           ))}
         </nav>
 
-        <div className="bp-header__tail">
-          <LanguageSwitcher />
-          <a href="#contacts" className="bp-btn bp-btn--primary bp-header__cta">{t.nav.contact}</a>
-        </div>
+        <a href="#contacts" className="bp-btn bp-btn--primary bp-header__cta">{t.nav.contact}</a>
+
+        <LanguageSwitcher className="bp-header__lang" />
 
         <button
           className="bp-header__burger"

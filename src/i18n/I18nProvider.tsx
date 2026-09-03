@@ -4,7 +4,6 @@ import { kk } from './locales/kk';
 import { ru } from './locales/ru';
 import type { Locale, SiteContent } from './types';
 
-const STORAGE_KEY = 'bananapatch-language';
 const locales: Record<Locale, SiteContent> = { ru, kk, en };
 
 type I18nValue = {
@@ -15,32 +14,18 @@ type I18nValue = {
 
 const I18nContext = createContext<I18nValue | null>(null);
 
-function getInitialLocale(): Locale {
-  if (typeof window === 'undefined') return 'ru';
-  try {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    return saved === 'kk' || saved === 'en' || saved === 'ru' ? saved : 'ru';
-  } catch {
-    return 'ru';
-  }
-}
-
 function updateMeta(selector: string, content: string) {
   document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', content);
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
+  // Every visit starts in Russian — the site's primary audience — regardless
+  // of what a visitor picked on a previous visit. Switching still works for
+  // the rest of that session, it just doesn't persist across reloads.
+  const [locale, setLocaleState] = useState<Locale>('ru');
   const content = locales[locale];
 
-  const setLocale = (nextLocale: Locale) => {
-    setLocaleState(nextLocale);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, nextLocale);
-    } catch {
-      // The language still changes for the current session when storage is unavailable.
-    }
-  };
+  const setLocale = (nextLocale: Locale) => setLocaleState(nextLocale);
 
   useEffect(() => {
     document.documentElement.lang = locale;
