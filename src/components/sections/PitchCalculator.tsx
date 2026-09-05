@@ -26,6 +26,14 @@ type Step = { key: string; label: string; kind: 'level' | 'delta' | 'final'; fro
 
 const toMillions = (v: number) => v / 1_000_000;
 
+// Matches AnimatedNumber's own rounding exactly (toLocaleString, not
+// toFixed): the two disagreed by a cent on some values — e.g. -2.525
+// is stored as -2.5249999999999995 in floating point, so .toFixed(2)
+// silently rounds it down to -2.52 while toLocaleString rounds to -2.53 —
+// so the summary card and the waterfall showed two different numbers
+// for the same "До налога" figure.
+const fmt2 = (v: number) => v.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 export default function PitchCalculator() {
   const t = usePitchContent().calculator;
   const [units, setUnits] = useState<number>(20_000);
@@ -114,7 +122,7 @@ export default function PitchCalculator() {
                 >
                   <span className="bp-calc__bar-value">
                     {isNegativeDelta ? '−' : ''}
-                    {Math.abs(toMillions(s.to - s.from)).toFixed(2)}
+                    {fmt2(Math.abs(toMillions(s.to - s.from)))}
                   </span>
                 </motion.div>
               </div>
@@ -135,7 +143,7 @@ export default function PitchCalculator() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
-            <span className="bp-calc__row-value">{toMillions(s.to - s.from).toFixed(2)} млн</span>
+            <span className="bp-calc__row-value">{fmt2(toMillions(s.to - s.from))} млн</span>
           </div>
         ))}
       </div>

@@ -1,8 +1,12 @@
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Chip from '../ui/Chip';
+import BananaBurst from '../ui/BananaBurst';
 import { usePitchContent } from '../../i18n/pitch/usePitchContent';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const DOUBLE_TAP_MS = 400;
+const BURST_DURATION_MS = 1500;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -15,6 +19,25 @@ const fadeUp = {
 
 export default function PitchHero() {
   const t = usePitchContent().hero;
+  const [burst, setBurst] = useState(false);
+  const lastTapRef = useRef(0);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLogoTap = () => {
+    const now = Date.now();
+    if (now - lastTapRef.current < DOUBLE_TAP_MS) {
+      lastTapRef.current = 0;
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      setBurst(false);
+      // Restart on the next frame so a rapid re-trigger re-mounts cleanly.
+      requestAnimationFrame(() => {
+        setBurst(true);
+        timeoutRef.current = setTimeout(() => setBurst(false), BURST_DURATION_MS);
+      });
+    } else {
+      lastTapRef.current = now;
+    }
+  };
 
   return (
     <section id="top" className="bp-hero bp-root">
@@ -50,15 +73,24 @@ export default function PitchHero() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
         >
-          <div className="bp-hero__mark">
+          <div
+            className="bp-hero__mark"
+            onClick={handleLogoTap}
+            role="button"
+            tabIndex={0}
+            aria-label={t.logoHint}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLogoTap(); handleLogoTap(); } }}
+          >
             <motion.img
               src="/images/logo.png"
               alt="BananaPatch"
               className="bp-hero__mark-img"
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              animate={burst ? { rotate: [0, -10, 10, -6, 6, 0], scale: [1, 1.12, 1] } : { y: [0, -14, 0] }}
+              transition={burst ? { duration: 0.6, ease: EASE } : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             />
+            <BananaBurst active={burst} />
           </div>
+          <p className="bp-hero__logo-hint">{t.logoHint}</p>
         </motion.div>
       </div>
     </section>

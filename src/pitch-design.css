@@ -379,6 +379,11 @@ html body {
 
 .bp-header__burger {
   display: none;
+  position: relative;
+  /* Above .bp-mobile-nav (99): without this the open overlay visually
+     covers the now-X burger button and swallows the tap meant to close
+     it — the menu becomes impossible to close by tapping the icon again. */
+  z-index: 101;
   justify-self: end;
   width: 44px;
   height: 44px;
@@ -543,6 +548,7 @@ html body {
    ========================================================================== */
 
 .bp-hero__mark {
+  position: relative;
   width: min(26vw, 340px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -551,12 +557,40 @@ html body {
   justify-content: center;
   background: radial-gradient(circle, rgba(61, 99, 255, 0.28), rgba(61, 99, 255, 0.05) 60%, transparent 75%);
   border: 1px solid var(--bp-hairline);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bp-hero__mark-img {
   width: 42%;
   height: auto;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+.bp-hero__logo-hint {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: var(--bp-fs-micro);
+  color: var(--bp-pale-2);
+}
+
+.bp-banana-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bp-banana-burst__emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  line-height: 1;
+  transform-origin: center;
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  will-change: transform, opacity;
 }
 
 @media (max-width: 900px) {

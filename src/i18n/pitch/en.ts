@@ -20,6 +20,7 @@ export const en: PitchContent = {
     ctaPrimary: 'How it works',
     ctaSecondary: 'Contact us',
     trust: 'Reviewed by an M.D. surgery professor and a Ph.D. genetics professor',
+    logoHint: 'Double-click the logo for a banana surprise 🍌',
   },
   problem: {
     eyebrow: 'Why it matters',
