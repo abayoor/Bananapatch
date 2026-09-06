@@ -487,6 +487,8 @@ html body {
 
 .bp-hero__visual {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -540,6 +542,12 @@ html body {
   .bp-hero__ring { display: none; }
   .bp-hero__glow { width: 120vw; right: -30%; top: -10%; }
   .bp-hero__sub, .bp-hero__trust { max-width: none; }
+  /* --bp-fs-hero's clamp() floors at 2.5rem and stops shrinking below
+     ~600px viewport width, so "BANANAPATCH" (11 characters, a wide
+     display face) wrapped into "BANANAPAT / CH" on narrow phones. Drive
+     this purely off vw here so it keeps shrinking down to 320px instead
+     of hitting that floor. */
+  .bp-hero__title { font-size: clamp(1.7rem, 9vw, 2.6rem); }
 }
 
 /* ==========================================================================
@@ -549,7 +557,7 @@ html body {
 
 .bp-hero__mark {
   position: relative;
-  width: min(26vw, 340px);
+  width: min(34vw, 420px);
   aspect-ratio: 1;
   border-radius: 50%;
   display: flex;
@@ -594,7 +602,7 @@ html body {
 }
 
 @media (max-width: 900px) {
-  .bp-hero__mark { width: min(58vw, 280px); margin-inline: auto; }
+  .bp-hero__mark { width: min(70vw, 340px); margin-inline: auto; }
 }
 
 /* ==========================================================================

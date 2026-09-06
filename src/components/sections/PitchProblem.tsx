@@ -60,7 +60,7 @@ export default function PitchProblem() {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } } }}
         >
           {t.stats.map((s, i) => (
-            <motion.div key={s.number} variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: EASE }}>
+            <motion.div key={i} variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: EASE }}>
               <StatCard icon={ICONS[i]} number={s.number} label={s.label} />
             </motion.div>
           ))}

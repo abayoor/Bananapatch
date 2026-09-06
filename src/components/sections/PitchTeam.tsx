@@ -13,14 +13,14 @@ export default function PitchTeam() {
 
       <div className="bp-grid bp-team__grid">
         {t.members.map((m, i) => (
-          <article key={m.name} className="bp-team__card">
+          <article key={i} className="bp-team__card">
             <div className="bp-team__photo">
               <img src={PHOTOS[i]} alt={m.name} loading="lazy" />
             </div>
             <h3>{m.name}</h3>
             <p className="bp-team__role">{m.role}</p>
             <ul>
-              {m.responsibilities.map((r) => <li key={r}>{r}</li>)}
+              {m.responsibilities.map((r, j) => <li key={j}>{r}</li>)}
             </ul>
           </article>
         ))}

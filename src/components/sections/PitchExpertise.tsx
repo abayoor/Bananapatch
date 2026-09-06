@@ -34,7 +34,7 @@ function ExpertBlock({ expert, photo, reversed }: { expert: Expert; photo?: stri
         <h3 className="bp-expertise__name">{expert.name}</h3>
         <p className="bp-body" style={{ color: 'var(--bp-pale)' }}>{expert.role}</p>
         <div className="bp-expertise__chips">
-          {expert.credentials.map((c) => <Chip key={c}>{c}</Chip>)}
+          {expert.credentials.map((c, i) => <Chip key={i}>{c}</Chip>)}
         </div>
       </motion.div>
 
@@ -78,7 +78,7 @@ export default function PitchExpertise() {
 
       <div className="bp-expertise__list">
         {t.experts.map((expert, i) => (
-          <ExpertBlock key={expert.name} expert={expert} photo={PHOTOS[i]} reversed={i % 2 === 1} />
+          <ExpertBlock key={i} expert={expert} photo={PHOTOS[i]} reversed={i % 2 === 1} />
         ))}
       </div>
 

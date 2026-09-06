@@ -41,8 +41,8 @@ export default function PitchComposition() {
       <p className="bp-micro bp-composition__callout">{t.callout}</p>
 
       <div className="bp-grid bp-composition__cards">
-        {t.cards.map((c) => (
-          <div key={c.title} className="bp-composition__card">
+        {t.cards.map((c, i) => (
+          <div key={i} className="bp-composition__card">
             <h3>{c.title}</h3>
             <p>{c.body}</p>
           </div>

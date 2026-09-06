@@ -30,7 +30,7 @@ export default function PitchMarket() {
         >
           {t.funnel.map((f, i) => (
             <motion.div
-              key={f.label}
+              key={i}
               className="bp-market__tier"
               style={{ width: `${FUNNEL_WIDTH[i]}%` }}
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}

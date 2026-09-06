@@ -42,7 +42,7 @@ export default function PitchPricing() {
       >
         {t.ladder.map((row, i) => (
           <motion.div
-            key={row.name}
+            key={i}
             className={`bp-pricing__row ${i === 5 ? 'bp-pricing__row--featured' : ''}`}
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -82,11 +82,11 @@ export default function PitchPricing() {
           <text x="4" y="14" className="bp-pricing__axis-label">{t.axisTop}</text>
           <text x="4" y="314" className="bp-pricing__axis-label">{t.axisBottom}</text>
 
-          {scatter.map((p) => {
+          {scatter.map((p, i) => {
             const cx = (xPercent(p.price) / 100) * 640;
             const cy = 320 - p.y * 320;
             return (
-              <g key={p.name}>
+              <g key={i}>
                 {p.featured && <circle cx={cx} cy={cy} r="14" className="bp-pricing__pulse" />}
                 <circle cx={cx} cy={cy} r={p.featured ? 8 : 5} className={`bp-pricing__dot ${p.featured ? 'bp-pricing__dot--featured' : ''}`} />
                 <text x={cx + 12} y={cy + 4} className="bp-pricing__dot-label">{p.name}</text>
@@ -96,8 +96,8 @@ export default function PitchPricing() {
         </svg>
 
         <ul className="bp-pricing__list">
-          {scatter.map((p) => (
-            <li key={p.name} className={p.featured ? 'bp-pricing__list-item--featured' : ''}>
+          {scatter.map((p, i) => (
+            <li key={i} className={p.featured ? 'bp-pricing__list-item--featured' : ''}>
               <span>{p.name}</span>
               <span>{p.price.toLocaleString('ru-RU')} ₸</span>
               <span className="bp-micro">{formatFor(p.y)}</span>
@@ -107,8 +107,8 @@ export default function PitchPricing() {
       </div>
 
       <div className="bp-grid" style={{ marginTop: '2.5rem' }}>
-        {t.uniqueness.map((u) => (
-          <div key={u.title} className="bp-composition__card">
+        {t.uniqueness.map((u, i) => (
+          <div key={i} className="bp-composition__card">
             <h3>{u.title}</h3>
             <p>{u.body}</p>
           </div>

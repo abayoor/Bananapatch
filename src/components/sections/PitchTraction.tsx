@@ -18,7 +18,7 @@ function TimelineColumn({ title, items, statusFor }: { title: string; items: Ite
         </div>
         <ul>
           {items.map((item, i) => (
-            <li key={item.date + item.title}>
+            <li key={i}>
               <span className={`bp-traction__dot bp-traction__dot--${statusFor(i)}`} aria-hidden="true" />
               <span className="bp-traction__date">{item.date}</span>
               <strong>{item.title}</strong>
