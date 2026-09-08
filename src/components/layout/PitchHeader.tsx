@@ -24,8 +24,28 @@ export default function PitchHeader() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (!open) return;
+    // Plain `overflow: hidden` on body doesn't reliably lock scroll on iOS
+    // Safari, especially once the page has already been scrolled: the menu
+    // opens but the background can still pan under it, and it can end up
+    // looking frozen/stuck rather than a clean fullscreen overlay. Pinning
+    // body with position:fixed (and restoring the exact scroll offset on
+    // close) is the technique that actually holds on iOS.
+    const scrollY = window.scrollY;
+    const { style } = document.body;
+    style.position = 'fixed';
+    style.top = `-${scrollY}px`;
+    style.left = '0';
+    style.right = '0';
+    style.width = '100%';
+    return () => {
+      style.position = '';
+      style.top = '';
+      style.left = '';
+      style.right = '';
+      style.width = '';
+      window.scrollTo(0, scrollY);
+    };
   }, [open]);
 
   return (
